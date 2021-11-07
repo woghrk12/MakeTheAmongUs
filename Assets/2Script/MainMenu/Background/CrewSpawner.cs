@@ -16,6 +16,15 @@ public class CrewSpawner : MonoBehaviour
 
     private bool[] isSpawn = new bool[(int)EPlayerColor.End];
 
+    private void Start()
+    {
+        for (int i = 0; i < (int)EPlayerColor.End; i++)
+        {
+            SpawnFloatingCrew((EPlayerColor)i, distance);
+            isSpawn[i] = true;
+        }
+    }
+
     private void Update()
     {
         TimeChecking();
