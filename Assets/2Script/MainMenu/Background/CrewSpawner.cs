@@ -10,8 +10,8 @@ public class CrewSpawner : MonoBehaviour
 
     [SerializeField] private Transform topRight;
     [SerializeField] private Transform bottomLeft;
-
-    private void SpawnFloatingCrew(EPlayerColor color, float dist)
+    
+    public void SpawnFloatingCrew(EPlayerColor color, float dist)
     {
         int angle = Random.Range(0, 360);
 
@@ -33,5 +33,14 @@ public class CrewSpawner : MonoBehaviour
             Random.Range(0.8f, 1f),
             color
             );
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        var crew = collision.GetComponent<FloatingCrew>();
+        if (crew)
+        {
+            Destroy(crew.gameObject);
+        }
     }
 }
