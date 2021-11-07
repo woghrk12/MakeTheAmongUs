@@ -10,8 +10,25 @@ public class CrewSpawner : MonoBehaviour
 
     [SerializeField] private Transform topRight;
     [SerializeField] private Transform bottomLeft;
-    
-    public void SpawnFloatingCrew(EPlayerColor color, float dist)
+
+    private float timer = 1f;
+    private float distance = 9f;
+
+    private void Update()
+    {
+        TimeChecking();
+    }
+
+    private void TimeChecking()
+    {
+        timer -= Time.deltaTime;
+        if (timer <= 0f)
+        {
+            SpawnFloatingCrew((EPlayerColor)Random.Range(0, 12), distance);
+            timer = 0.5f;
+        }
+    }
+    private void SpawnFloatingCrew(EPlayerColor color, float dist)
     {
         int angle = Random.Range(0, 360);
 
