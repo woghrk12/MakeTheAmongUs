@@ -14,6 +14,8 @@ public class CrewSpawner : MonoBehaviour
     private float timer = 1f;
     private float distance = 9f;
 
+    private bool[] isSpawn = new bool[(int)EPlayerColor.End];
+
     private void Update()
     {
         TimeChecking();
@@ -24,10 +26,19 @@ public class CrewSpawner : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0f)
         {
-            SpawnFloatingCrew((EPlayerColor)Random.Range(0, 12), distance);
+            SpawnChecking(Random.Range(0, (int)EPlayerColor.End));
             timer = 0.5f;
         }
     }
+
+    private void SpawnChecking(int value)
+    {
+        if (isSpawn[value]) return;
+
+        SpawnFloatingCrew((EPlayerColor)value, distance);
+        isSpawn[value] = true;
+    }
+
     private void SpawnFloatingCrew(EPlayerColor color, float dist)
     {
         int angle = Random.Range(0, 360);
@@ -57,6 +68,7 @@ public class CrewSpawner : MonoBehaviour
         var crew = collision.GetComponent<FloatingCrew>();
         if (crew)
         {
+            isSpawn[(int)crew.color] = false;
             Destroy(crew.gameObject);
         }
     }

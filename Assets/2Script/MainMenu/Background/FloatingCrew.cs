@@ -7,7 +7,7 @@ public class FloatingCrew : MonoBehaviour
     private Vector3 direction;
     private float floatingSpeed;
     private float rotateSpeed;
-    private EPlayerColor color;
+    public EPlayerColor color { private set; get; }
 
     private SpriteRenderer spriteRender;
 
