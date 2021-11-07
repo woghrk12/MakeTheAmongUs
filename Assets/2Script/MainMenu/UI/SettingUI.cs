@@ -61,4 +61,15 @@ public class SettingUI : MonoBehaviour
                 break;
         }
     }
+
+    public void OnClickFullScreenTrigger(bool value)
+    {
+        ChangeFullScreen(value);
+    }
+
+    private void ChangeFullScreen(bool value)
+    {
+        if (value) Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+        else Screen.fullScreenMode = FullScreenMode.Windowed;
+    }
 }
