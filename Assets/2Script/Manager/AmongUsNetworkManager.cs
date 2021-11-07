@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class AmongUsNetworkManager : MonoBehaviour
 {
+    private readonly string gameVersion = "1";
+
     private static AmongUsNetworkManager instance;
     public static AmongUsNetworkManager Instance
     {
@@ -37,4 +40,15 @@ public class AmongUsNetworkManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
     }
+
+    private void Start()
+    {
+        PhotonNetwork.GameVersion = gameVersion;
+        PhotonNetwork.SendRate = 60;
+        PhotonNetwork.SerializationRate = 30;
+
+        Connect();
+    }
+
+    private void Connect() => PhotonNetwork.ConnectUsingSettings();
 }
