@@ -4748,7 +4748,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.7811142, g: 1, b: 0, a: 1}
@@ -4772,7 +4772,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1154759783}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1545954980}
+        m_TargetAssemblyTypeName: SettingUI, Assembly-CSharp
+        m_MethodName: OnClickControlButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1154759783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5957,6 +5969,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8d867834fb15b42ba88eb76af9a1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseButton: {fileID: 2113639856}
+  keyboardButton: {fileID: 1154759782}
 --- !u!1 &1547439806
 GameObject:
   m_ObjectHideFlags: 0
@@ -13404,7 +13418,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.7811142, g: 1, b: 0, a: 1}
@@ -13428,7 +13442,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2113639857}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1545954980}
+        m_TargetAssemblyTypeName: SettingUI, Assembly-CSharp
+        m_MethodName: OnClickControlButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2113639857
 MonoBehaviour:
   m_ObjectHideFlags: 0
