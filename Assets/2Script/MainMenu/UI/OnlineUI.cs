@@ -16,8 +16,17 @@ public class OnlineUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void SetNickname(string value)
+    private void SetNickname(string value) => PlayerSetting.nickname = value;
+
+    private bool CheckNickname(string value)
     {
-        PlayerSetting.nickname = value;
+        if (value.TrimStart() == "")
+        {
+            nicknameInput.GetComponent<Animator>().SetTrigger("On");
+            return false;
+        }
+
+        SetNickname(value);
+        return true;
     }
 }
