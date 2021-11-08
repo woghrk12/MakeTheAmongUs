@@ -7,16 +7,36 @@ public class CreateRoomUI : MonoBehaviour
 {
     [SerializeField] private GameObject onlineUI;
 
+    [SerializeField] private List<Image> crewImages;
     [SerializeField] private List<Button> maxPlayerButtons;
     [SerializeField] private List<Button> imposterButtons;
 
     private int maxPlayerCount = 10;
-    private int minPlayerCount;
+    private int minPlayerCount = 4;
     private int imposterCount = 1;
 
+    private void Awake()
+    {
+        for (int i = 0; i < crewImages.Count; i++)
+        {
+            var inst = Instantiate(crewImages[i].material);
+            crewImages[i].material = inst;
+        }
+
+        UpdateCrewImage();
+    }
+
     public void OnClickCancelButton() => CloseCreateRoomUI();
-    public void OnClickMaxPlayerButton(int value) => UpdateMaxPlayerCount(value);
-    public void OnClickImposterButton(int value) => UpdateImposterCount(value);
+    public void OnClickMaxPlayerButton(int value)
+    {
+        UpdateMaxPlayerCount(value);
+        UpdateCrewImage();
+    }
+    public void OnClickImposterButton(int value)
+    {
+        UpdateImposterCount(value);
+        UpdateCrewImage();
+    }
 
     private void CloseCreateRoomUI()
     {
@@ -44,10 +64,6 @@ public class CreateRoomUI : MonoBehaviour
         }
 
         UpdateMinPlayerCount(imposterCount);
-
-        Debug.Log(maxPlayerCount);
-        Debug.Log(minPlayerCount);
-        Debug.Log(imposterCount);
     }
 
     private void UpdateMinPlayerCount(int value)
@@ -64,6 +80,38 @@ public class CreateRoomUI : MonoBehaviour
             maxPlayerButtons[i].interactable = !flag;
             text.color = flag ? Color.gray : Color.white;
         }
+    }
+  
+    private void UpdateCrewImage()
+    {
+        List<Image> _crewImages = new List<Image>();
+        List<Image> _imposterImage = new List<Image>();
+
+        for (int i = 0; i < crewImages.Count; i++)
+        {
+            if (i < maxPlayerCount)
+            {
+                crewImages[i].gameObject.SetActive(true);
+                _crewImages.Add(crewImages[i]);
+                continue;
+            }
+
+            crewImages[i].gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < imposterCount; i++)
+        {
+            var image = _crewImages[Random.Range(0, _crewImages.Count)];
+
+            _imposterImage.Add(image);
+            _crewImages.Remove(image);
+        }
+
+        for (int i = 0; i < _imposterImage.Count; i++)
+            _imposterImage[i].material.SetColor("_PlayerColor", Color.red);
+
+        for (int i = 0; i < _crewImages.Count; i++)
+            _crewImages[i].material.SetColor("_PlayerColor", Color.white);
     }
 
     private void SetButtonAlpha(Button button, float alpha)
