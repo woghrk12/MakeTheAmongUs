@@ -2852,7 +2852,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 621583431}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1057821691}
+        m_TargetAssemblyTypeName: CreateRoomUI, Assembly-CSharp
+        m_MethodName: OnClickImposterButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &621583431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3752,7 +3764,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 873352039}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1057821691}
+        m_TargetAssemblyTypeName: CreateRoomUI, Assembly-CSharp
+        m_MethodName: OnClickImposterButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &873352039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4536,6 +4560,10 @@ MonoBehaviour:
   - {fileID: 67209169}
   - {fileID: 1706455631}
   - {fileID: 1491489552}
+  imposterButtons:
+  - {fileID: 621583430}
+  - {fileID: 873352038}
+  - {fileID: 1970231520}
 --- !u!1 &1102589695
 GameObject:
   m_ObjectHideFlags: 0
@@ -13163,7 +13191,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1970231521}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1057821691}
+        m_TargetAssemblyTypeName: CreateRoomUI, Assembly-CSharp
+        m_MethodName: OnClickImposterButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1970231521
 MonoBehaviour:
   m_ObjectHideFlags: 0
