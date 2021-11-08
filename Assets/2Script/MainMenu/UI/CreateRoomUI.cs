@@ -11,6 +11,7 @@ public class CreateRoomUI : MonoBehaviour
     [SerializeField] private List<Button> imposterButtons;
 
     private int maxPlayerCount = 10;
+    private int minPlayerCount;
     private int imposterCount = 1;
 
     public void OnClickCancelButton() => CloseCreateRoomUI();
@@ -40,6 +41,28 @@ public class CreateRoomUI : MonoBehaviour
         for (int i = 0; i < imposterButtons.Count; i++)
         {
             SetButtonAlpha(imposterButtons[i], (i == value - 1) ? 1f : 0f);
+        }
+
+        UpdateMinPlayerCount(imposterCount);
+
+        Debug.Log(maxPlayerCount);
+        Debug.Log(minPlayerCount);
+        Debug.Log(imposterCount);
+    }
+
+    private void UpdateMinPlayerCount(int value)
+    {
+        minPlayerCount = value == 1 ? 4 : value == 2 ? 6 : 8;
+
+        if (maxPlayerCount < minPlayerCount) UpdateMaxPlayerCount(minPlayerCount);
+
+        for (int i = 0; i < maxPlayerButtons.Count; i++)
+        {
+            var text = maxPlayerButtons[i].GetComponentInChildren<Text>();
+
+            var flag = i < minPlayerCount - 4;
+            maxPlayerButtons[i].interactable = !flag;
+            text.color = flag ? Color.gray : Color.white;
         }
     }
 
