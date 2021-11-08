@@ -12,7 +12,11 @@ public class MainUI : MonoBehaviour
         ActiveSettingUI();
     }
 
-    public void OnClickOnlineButton() => ActiveOnlineUI();
+    public void OnClickOnlineButton()
+    {
+        AmongUsNetworkManager.Instance.Connect();
+        ActiveOnlineUI();
+    }
 
 
     private void ActiveSettingUI()

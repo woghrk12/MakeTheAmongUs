@@ -46,9 +46,7 @@ public class AmongUsNetworkManager : MonoBehaviour
         PhotonNetwork.GameVersion = gameVersion;
         PhotonNetwork.SendRate = 60;
         PhotonNetwork.SerializationRate = 30;
-
-        Connect();
     }
 
-    private void Connect() => PhotonNetwork.ConnectUsingSettings();
+    public void Connect() => PhotonNetwork.ConnectUsingSettings();
 }
