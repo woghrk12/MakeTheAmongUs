@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class AmongUsNetworkManager : MonoBehaviour
+public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
 {
     private readonly string gameVersion = "1";
 
@@ -28,6 +28,9 @@ public class AmongUsNetworkManager : MonoBehaviour
         }
     }
 
+    [SerializeField] private UnityEngine.UI.Text text;
+    private string statusText;
+
     private void Awake()
     {
         var objs = FindObjectsOfType<AmongUsNetworkManager>();
@@ -46,9 +49,15 @@ public class AmongUsNetworkManager : MonoBehaviour
         PhotonNetwork.GameVersion = gameVersion;
         PhotonNetwork.SendRate = 60;
         PhotonNetwork.SerializationRate = 30;
-
-        Connect();
     }
 
-    private void Connect() => PhotonNetwork.ConnectUsingSettings();
+    private void Update()
+    {
+        statusText = PhotonNetwork.NetworkClientState.ToString();
+        text.text = $"Status : {statusText}";
+    }
+
+    public void Connect() => PhotonNetwork.ConnectUsingSettings();
+
+    public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby();
 }
