@@ -28,6 +28,9 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
+    [SerializeField] private UnityEngine.UI.Text text;
+    private string statusText;
+
     private void Awake()
     {
         var objs = FindObjectsOfType<AmongUsNetworkManager>();
@@ -46,6 +49,12 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.GameVersion = gameVersion;
         PhotonNetwork.SendRate = 60;
         PhotonNetwork.SerializationRate = 30;
+    }
+
+    private void Update()
+    {
+        statusText = PhotonNetwork.NetworkClientState.ToString();
+        text.text = $"Status : {statusText}";
     }
 
     public void Connect() => PhotonNetwork.ConnectUsingSettings();
