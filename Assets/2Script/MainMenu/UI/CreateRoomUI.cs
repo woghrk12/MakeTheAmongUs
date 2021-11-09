@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Realtime;
 
 public class CreateRoomUI : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class CreateRoomUI : MonoBehaviour
         UpdateImposterCount(value);
         UpdateCrewImage();
     }
+    public void OnClickConfirmButton() => CreateRoom();
 
     private void CloseCreateRoomUI()
     {
@@ -117,5 +119,11 @@ public class CreateRoomUI : MonoBehaviour
     private void SetButtonAlpha(Button button, float alpha)
     {
         button.image.color = new Color(1f, 1f, 1f, alpha);
+    }
+
+    private void CreateRoom()
+    {
+        RoomOptions roomOptions = new RoomOptions();
+        AmongUsNetworkManager.Instance.CreateRoom(roomOptions);
     }
 }

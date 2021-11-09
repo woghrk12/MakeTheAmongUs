@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
 {
@@ -51,4 +52,9 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
     public void Connect() => PhotonNetwork.ConnectUsingSettings();
 
     public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby();
+
+    public void CreateRoom(RoomOptions roomOptions)
+    {
+        PhotonNetwork.CreateRoom(PlayerSetting.nickname, roomOptions);
+    }
 }
