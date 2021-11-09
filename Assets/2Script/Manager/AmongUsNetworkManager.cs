@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class AmongUsNetworkManager : MonoBehaviour
+public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
 {
     private readonly string gameVersion = "1";
 
@@ -49,4 +49,6 @@ public class AmongUsNetworkManager : MonoBehaviour
     }
 
     public void Connect() => PhotonNetwork.ConnectUsingSettings();
+
+    public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby();
 }
