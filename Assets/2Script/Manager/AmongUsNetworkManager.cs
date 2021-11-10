@@ -19,7 +19,7 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
                 var obj = FindObjectOfType<AmongUsNetworkManager>();
 
                 if (obj != null) instance = obj;
-                else 
+                else
                 {
                     var newObj = new GameObject().AddComponent<AmongUsNetworkManager>();
                     instance = newObj;
@@ -33,6 +33,8 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
     [SerializeField] private UnityEngine.UI.Text text;
     private string statusText;
 
+    public List<RoomInfo> roomList { get; private set; }
+
     private void Awake()
     {
         var objs = FindObjectsOfType<AmongUsNetworkManager>();
@@ -44,7 +46,10 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
         }
 
         DontDestroyOnLoad(gameObject);
+
+        roomList = new List<RoomInfo>();
     }
+
 
     private void Start()
     {
@@ -55,13 +60,57 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        statusText = PhotonNetwork.NetworkClientState.ToString();
-        text.text = $"Status : {statusText}";
+        if (PhotonNetwork.InLobby) 
+        {
+            statusText = PhotonNetwork.NetworkClientState.ToString();
+            text.text = $"Status : {statusText}";
+        }
     }
 
     public void Connect() => PhotonNetwork.ConnectUsingSettings();
 
     public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby();
+
+    public override void OnRoomListUpdate(List<RoomInfo> _roomList)
+    {
+        foreach (var room in _roomList)
+        {
+            if (room.RemovedFromList) 
+            {
+                RemoveRoom(roomList, room);
+                continue;
+            }
+
+            if (FindRooom(roomList, room) == -1)
+            {
+                AddRoom(roomList, room);
+                continue;
+            }
+
+            ModifyRoom(roomList, room);
+        }
+    }
+
+    private int FindRooom(List<RoomInfo> roomInfos, RoomInfo targetRoom)
+    {
+        return roomInfos.FindIndex(x => x.Equals(targetRoom));
+    }
+
+    private void AddRoom(List<RoomInfo> roomInfos, RoomInfo newRoom)
+    {
+        roomInfos.Add(newRoom);
+    }
+
+    private void RemoveRoom(List<RoomInfo> roomInfos, RoomInfo targetRoom)
+    {
+        roomInfos.Remove(roomInfos.Find(x => x.Equals(targetRoom)));
+    }
+
+    private void ModifyRoom(List<RoomInfo> roomInfos, RoomInfo newRoom)
+    {
+        var index = roomInfos.FindIndex(x => x.Equals(newRoom));
+        roomInfos[index] = newRoom;
+    }
 
     public void CreateRoom(RoomOptions roomOptions)
     {
