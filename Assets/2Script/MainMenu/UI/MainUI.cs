@@ -5,14 +5,28 @@ using UnityEngine;
 public class MainUI : MonoBehaviour
 {
     [SerializeField] private GameObject settingUI;
+    [SerializeField] private GameObject onlineUI;
 
     public void OnClickSettingButton()
     {
         ActiveSettingUI();
     }
 
+    public void OnClickOnlineButton()
+    {
+        AmongUsNetworkManager.Instance.Connect();
+        ActiveOnlineUI();
+    }
+
+
     private void ActiveSettingUI()
     {
         settingUI.SetActive(true);
+    }
+
+    private void ActiveOnlineUI()
+    {
+        onlineUI.SetActive(true);
+        gameObject.SetActive(false);
     }
 }
