@@ -167,6 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 592252248285659345}
+  - component: {fileID: 1683964587}
   m_Layer: 5
   m_Name: Room List Item
   m_TagString: Untagged
@@ -200,6 +201,24 @@ RectTransform:
   m_AnchoredPosition: {x: 400, y: -50}
   m_SizeDelta: {x: 750, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1683964587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592252248285659346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46991c6cddef57941ada70eff08f248a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapImage: {fileID: 592252249579887111}
+  roomNameText: {fileID: 592252247925939854}
+  imposterCountText: {fileID: 592252247980427370}
+  imposterImage: {fileID: 592252248641485986}
+  playerCountText: {fileID: 592252249590533566}
+  playerImage: {fileID: 592252249658331387}
 --- !u!1 &592252248459692241
 GameObject:
   m_ObjectHideFlags: 0
