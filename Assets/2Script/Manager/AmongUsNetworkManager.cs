@@ -55,8 +55,11 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        statusText = PhotonNetwork.NetworkClientState.ToString();
-        text.text = $"Status : {statusText}";
+        if (PhotonNetwork.InLobby)
+        {
+            statusText = PhotonNetwork.NetworkClientState.ToString();
+            text.text = $"Status : {statusText}";
+        }
     }
 
     public void Connect() => PhotonNetwork.ConnectUsingSettings();
@@ -66,10 +69,31 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
     public void CreateRoom(RoomOptions roomOptions)
     {
         PhotonNetwork.CreateRoom(PlayerSetting.nickname, roomOptions);
+        SceneManager.sceneLoaded += LoadEnd;
+        StartCoroutine(Load());
     }
 
-    public override void OnJoinedRoom()
-    { 
-        SceneManager.LoadScene("GameRoom");
+    private IEnumerator Load()
+    {
+        AsyncOperation op = SceneManager.LoadSceneAsync("GameRoom");
+        
+        while (!op.isDone || !PhotonNetwork.InRoom)
+        {
+            yield return null;
+        }
+
+        Debug.Log("InGameRoom");
+        SpawnCharacter();
+    }
+
+    private void LoadEnd(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        Debug.Log("LoadEnd");
+        SceneManager.sceneLoaded -= LoadEnd;
+    }
+
+    private void SpawnCharacter()
+    {
+        PhotonNetwork.Instantiate("Room Player", Vector3.zero, Quaternion.identity);
     }
 }
