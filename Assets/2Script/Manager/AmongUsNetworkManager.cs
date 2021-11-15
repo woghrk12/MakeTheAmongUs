@@ -94,6 +94,7 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
 
     private void SpawnCharacter()
     {
-        PhotonNetwork.Instantiate("Room Player", Vector3.zero, Quaternion.identity);
+        var spawnPositions = FindObjectOfType<SpawnPositions>();
+        PhotonNetwork.Instantiate("Room Player", spawnPositions.GetSpawnPosition(), Quaternion.identity);
     }
 }
