@@ -3225,6 +3225,7 @@ MonoBehaviour:
   settingUI: {fileID: 1545954977}
   onlineUI: {fileID: 2126444506}
   onlineButtonText: {fileID: 1804823184}
+  onlineButton: {fileID: 138545729}
 --- !u!1 &741707273
 GameObject:
   m_ObjectHideFlags: 0
