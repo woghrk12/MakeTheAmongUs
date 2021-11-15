@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
 
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+
 public class CreateRoomUI : MonoBehaviour
 {
     [SerializeField] private GameObject onlineUI;
@@ -124,6 +126,12 @@ public class CreateRoomUI : MonoBehaviour
     private void CreateRoom()
     {
         RoomOptions roomOptions = new RoomOptions();
+        
+        Hashtable hash = new Hashtable();
+        hash.Add("SpawnIndex", 0);
+
+        roomOptions.CustomRoomProperties = hash;
+
         AmongUsNetworkManager.Instance.CreateRoom(roomOptions);
     }
 }
