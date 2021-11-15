@@ -24,6 +24,10 @@ public class MainUI : MonoBehaviour
         StartCoroutine(ActiveOnlineUI());
     }
 
+    public void OnClickExitButton()
+    {
+        ExitGame();
+    }
 
     private void ActiveSettingUI()
     {
@@ -53,5 +57,14 @@ public class MainUI : MonoBehaviour
     private void ChangeOnlineButtonText(bool isConnecting)
     {
         onlineButtonText.text = isConnecting ? "Loading.." : "Online";
+    }
+
+    private void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }
