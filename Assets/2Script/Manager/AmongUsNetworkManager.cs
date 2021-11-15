@@ -60,14 +60,15 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if (PhotonNetwork.InLobby)
-        { 
+        if (SceneManager.GetActiveScene().name.Equals("MainMenu"))
+        {
             statusText = PhotonNetwork.NetworkClientState.ToString();
             text.text = $"Status : {statusText}";
         }
     }
 
     public void Connect() => PhotonNetwork.ConnectUsingSettings();
+    public void Disconnect() => PhotonNetwork.Disconnect();
 
     public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby();
 

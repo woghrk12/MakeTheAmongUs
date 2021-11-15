@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class MainUI : MonoBehaviour
 {
     [SerializeField] private GameObject settingUI;
     [SerializeField] private GameObject onlineUI;
+    [SerializeField] private UnityEngine.UI.Text onlineButtonText;
+
+    public void OnEnable()
+    {
+        ChangeOnlineButtonText(false);
+    }
 
     public void OnClickSettingButton()
     {
@@ -14,8 +21,7 @@ public class MainUI : MonoBehaviour
 
     public void OnClickOnlineButton()
     {
-        AmongUsNetworkManager.Instance.Connect();
-        ActiveOnlineUI();
+        StartCoroutine(ActiveOnlineUI());
     }
 
 
@@ -24,9 +30,28 @@ public class MainUI : MonoBehaviour
         settingUI.SetActive(true);
     }
 
-    private void ActiveOnlineUI()
+    private IEnumerator ActiveOnlineUI()
     {
+        yield return WaitForConnect();
+
         onlineUI.SetActive(true);
         gameObject.SetActive(false);
+    }
+
+    private IEnumerator WaitForConnect()
+    {
+        AmongUsNetworkManager.Instance.Connect();
+
+        ChangeOnlineButtonText(true);
+
+        while (!PhotonNetwork.IsConnected || !PhotonNetwork.InLobby)
+        {
+            yield return null;
+        }
+    }
+
+    private void ChangeOnlineButtonText(bool isConnecting)
+    {
+        onlineButtonText.text = isConnecting ? "Loading.." : "Online";
     }
 }
