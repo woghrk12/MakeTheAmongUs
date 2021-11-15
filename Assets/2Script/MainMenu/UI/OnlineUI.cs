@@ -33,6 +33,8 @@ public class OnlineUI : MonoBehaviour
 
     private void CloseOnlineUI()
     {
+        AmongUsNetworkManager.Instance.Disconnect();
+
         mainUI.SetActive(true);
         gameObject.SetActive(false);
     }

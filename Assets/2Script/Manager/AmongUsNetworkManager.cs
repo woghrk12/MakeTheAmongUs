@@ -68,6 +68,7 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
     }
 
     public void Connect() => PhotonNetwork.ConnectUsingSettings();
+    public void Disconnect() => PhotonNetwork.Disconnect();
 
     public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby();
 
