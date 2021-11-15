@@ -8,6 +8,7 @@ public class MainUI : MonoBehaviour
     [SerializeField] private GameObject settingUI;
     [SerializeField] private GameObject onlineUI;
     [SerializeField] private UnityEngine.UI.Text onlineButtonText;
+    [SerializeField] private UnityEngine.UI.Button onlineButton;
 
     public void OnEnable()
     {
@@ -44,6 +45,8 @@ public class MainUI : MonoBehaviour
 
     private IEnumerator WaitForConnect()
     {
+        onlineButton.interactable = false;
+        
         AmongUsNetworkManager.Instance.Connect();
 
         ChangeOnlineButtonText(true);
@@ -52,6 +55,8 @@ public class MainUI : MonoBehaviour
         {
             yield return null;
         }
+
+        onlineButton.interactable = true;
     }
 
     private void ChangeOnlineButtonText(bool isConnecting)
