@@ -66,6 +66,10 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
     public void CreateRoom(RoomOptions roomOptions)
     {
         PhotonNetwork.CreateRoom(PlayerSetting.nickname, roomOptions);
+    }
+
+    public override void OnJoinedRoom()
+    { 
         SceneManager.LoadScene("GameRoom");
     }
 }
