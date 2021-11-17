@@ -13,4 +13,20 @@ public class GameRoomSettingUI : SettingUI
     {
         CloseSettingUI();
     }
+
+    public void OnClickExitGameButton()
+    {
+        ExitGame();
+    }
+
+    private void ExitGame()
+    {
+        AmongUsNetworkManager.Instance.Disconnect();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }
