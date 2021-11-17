@@ -8,7 +8,7 @@ public class SettingUI : MonoBehaviour
     [SerializeField] private Button mouseButton;
     [SerializeField] private Button keyboardButton;
 
-    private Animator animator;
+    public Animator animator;
 
     private void Awake()
     {
@@ -21,6 +21,11 @@ public class SettingUI : MonoBehaviour
     }
 
     public void OnClickBackground()
+    {
+        CloseSettingUI();
+    }
+
+    public void CloseSettingUI()
     {
         StartCoroutine(CloseSettingUICo());
     }
