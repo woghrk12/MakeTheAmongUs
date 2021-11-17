@@ -5,6 +5,15 @@ using UnityEngine;
 public class CharacterMove : MonoBehaviour
 {
     [SerializeField] private float speed;
+    
+    private Animator anim;
+    private Rigidbody2D rigid;
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+        rigid = GetComponent<Rigidbody2D>();
+    }
 
     private void FixedUpdate()
     {
@@ -13,21 +22,44 @@ public class CharacterMove : MonoBehaviour
 
     private void Move()
     {
+        //MoveByMouse();
         MoveByKeyboard();
+    }
+
+    private void SetWalkAnimation( bool value)
+    {
+        anim.SetBool("isWalk", value);
     }
 
     private void MoveByMouse()
     {
-        if (Input.GetMouseButton(0))
+        bool isWalk = Input.GetMouseButton(0);
+
+        Vector3 dir = (Input.mousePosition - new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f)).normalized;
+        
+        if (isWalk)
         {
-            Vector3 dir = (Input.mousePosition - new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f)).normalized;
             transform.position += dir * speed * Time.deltaTime;
         }
+        
+        SetWalkAnimation(isWalk);
     }
 
     private void MoveByKeyboard()
     {
-        Vector3 dir = Vector3.ClampMagnitude(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f), 1f);
-        transform.position += dir * speed * Time.deltaTime;
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        bool isWalk = horizontal != 0 || vertical != 0;
+
+        Vector3 dir = Vector3.ClampMagnitude(new Vector3(horizontal, vertical, 0f), 1f);
+
+        if(isWalk)
+        {
+            transform.position += dir * speed * Time.deltaTime;
+        }
+
+        SetWalkAnimation(isWalk);
     }
+
+    
 }
