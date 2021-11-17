@@ -13,7 +13,7 @@ public class CharacterMove : MonoBehaviour
 
     private void Move()
     {
-        MoveByMouse();
+        MoveByKeyboard();
     }
 
     private void MoveByMouse()
@@ -23,5 +23,11 @@ public class CharacterMove : MonoBehaviour
             Vector3 dir = (Input.mousePosition - new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f)).normalized;
             transform.position += dir * speed * Time.deltaTime;
         }
+    }
+
+    private void MoveByKeyboard()
+    {
+        Vector3 dir = Vector3.ClampMagnitude(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f), 1f);
+        transform.position += dir * speed * Time.deltaTime;
     }
 }
