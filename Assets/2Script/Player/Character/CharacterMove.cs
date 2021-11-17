@@ -7,12 +7,12 @@ public class CharacterMove : MonoBehaviour
     [SerializeField] private float speed;
     
     private Animator anim;
-    private Rigidbody2D rigid;
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        rigid = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -22,8 +22,8 @@ public class CharacterMove : MonoBehaviour
 
     private void Move()
     {
-        //MoveByMouse();
-        MoveByKeyboard();
+        MoveByMouse();
+        //MoveByKeyboard();
     }
 
     private void SetWalkAnimation( bool value)
@@ -40,6 +40,7 @@ public class CharacterMove : MonoBehaviour
         if (isWalk)
         {
             transform.position += dir * speed * Time.deltaTime;
+            ChangeFlipX(dir);
         }
         
         SetWalkAnimation(isWalk);
@@ -56,10 +57,15 @@ public class CharacterMove : MonoBehaviour
         if(isWalk)
         {
             transform.position += dir * speed * Time.deltaTime;
+            ChangeFlipX(dir);
         }
 
         SetWalkAnimation(isWalk);
     }
 
-    
+    private void ChangeFlipX(Vector3 dir)
+    {
+        bool curFlipX = spriteRenderer.flipX;
+        spriteRenderer.flipX = (dir.x != 0) ? (dir.x < 0) : curFlipX;
+    }
 }
