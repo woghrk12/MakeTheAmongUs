@@ -120,6 +120,13 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
         StartCoroutine(Load());
     }
 
+    public void JoinRoom(string roomName)
+    {
+        PhotonNetwork.JoinRoom(roomName);
+        SceneManager.sceneLoaded += LoadEnd;
+        StartCoroutine(Load());
+    }
+
     private IEnumerator Load()
     {
         AsyncOperation op = SceneManager.LoadSceneAsync("GameRoom");

@@ -11,6 +11,7 @@ public class RoomListItem : MonoBehaviour
     [SerializeField] private Image imposterImage;
     [SerializeField] private Text playerCountText;
     [SerializeField] private Image playerImage;
+    [SerializeField] private Button roomButton;
 
     private void Awake()
     {
@@ -35,5 +36,6 @@ public class RoomListItem : MonoBehaviour
         roomNameText.text = _roomName;
         imposterCountText.text = _imposterCount.ToString();
         playerCountText.text = $"{_currentPlayerCount.ToString()} / {_maxPlayerCount.ToString()}";
+        roomButton.onClick.AddListener(() => AmongUsNetworkManager.Instance.JoinRoom(_roomName));
     }
 }
