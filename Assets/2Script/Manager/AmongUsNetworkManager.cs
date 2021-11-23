@@ -47,6 +47,8 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
 
         DontDestroyOnLoad(gameObject);
 
+        Screen.SetResolution(1024, 768, false);
+
         roomList = new List<RoomInfo>();
     }
 

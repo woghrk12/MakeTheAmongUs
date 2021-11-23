@@ -6280,6 +6280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseButton: {fileID: 2113639856}
   keyboardButton: {fileID: 1154759782}
+  animator: {fileID: 0}
 --- !u!1 &1547439806
 GameObject:
   m_ObjectHideFlags: 0
