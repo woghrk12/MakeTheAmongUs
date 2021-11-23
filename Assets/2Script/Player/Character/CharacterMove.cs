@@ -8,11 +8,13 @@ public class CharacterMove : MonoBehaviour
     
     private Animator anim;
     private SpriteRenderer spriteRenderer;
+    private Photon.Pun.PhotonView PV;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        PV = GetComponent<Photon.Pun.PhotonView>();
     }
 
     private void FixedUpdate()
@@ -22,8 +24,11 @@ public class CharacterMove : MonoBehaviour
 
     private void Move()
     {
-        MoveByMouse();
-        //MoveByKeyboard();
+        if (PV.IsMine)
+        {
+            MoveByMouse();
+            //MoveByKeyboard();
+        }
     }
 
     private void SetWalkAnimation( bool value)
