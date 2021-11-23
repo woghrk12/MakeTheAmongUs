@@ -10,7 +10,7 @@ public class SettingUI : MonoBehaviour
 
     [SerializeField] private Toggle fullScreenModeToggle;
 
-    public Animator animator;
+    private Animator animator;
 
     private void Awake()
     {
@@ -20,7 +20,6 @@ public class SettingUI : MonoBehaviour
     private void OnEnable()
     {
         SwitchButton(PlayerSetting.controlMode);
-        SwitchToggle(Screen.fullScreen);
     }
 
     public void OnClickBackground()
@@ -82,7 +81,7 @@ public class SettingUI : MonoBehaviour
     }
 
     private void SwitchToggle(bool fullScreenMode)
-    {
-        fullScreenModeToggle.isOn = fullScreenMode;
+    { 
+        
     }
 }
