@@ -13487,6 +13487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseButton: {fileID: 375620117}
   keyboardButton: {fileID: 1825717937}
+  fullScreenModeToggle: {fileID: 1861017174}
   animator: {fileID: 0}
 --- !u!95 &1448119051
 Animator:
