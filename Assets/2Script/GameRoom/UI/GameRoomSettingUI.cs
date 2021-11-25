@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameRoomSettingUI : SettingUI
 {
@@ -14,19 +15,15 @@ public class GameRoomSettingUI : SettingUI
         CloseSettingUI();
     }
 
-    public void OnClickExitGameButton()
+    public void OnClickExitGameRoomButton()
     {
-        ExitGame();
+        ExitGameRoom();
     }
 
-    private void ExitGame()
+    private void ExitGameRoom()
     {
         AmongUsNetworkManager.Instance.Disconnect();
 
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        SceneManager.LoadScene("MainMenu");
     }
 }
