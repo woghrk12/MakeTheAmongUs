@@ -11,6 +11,8 @@ public class JoinRoomUI : MonoBehaviour
     [SerializeField] private GameObject roomItemPrefab;
     [SerializeField] private List<GameObject> roomItems;
 
+    [SerializeField] private List<Sprite> bannerImages;
+
     private void Awake()
     {
         roomItems = new List<GameObject>();
@@ -49,6 +51,8 @@ public class JoinRoomUI : MonoBehaviour
         foreach (var room in _roomList)
         {
             var roomItem = Instantiate(roomItemPrefab, roomListPanel.transform);
+            roomItem.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => AmongUsNetworkManager.Instance.JoinRoom(room.Name));
+            //roomItem.GetComponent<RoomListItem>().SetItem(bannerImages[0], room.Name,)
             roomItems.Add(roomItem);
             // Set roominfo by customproperties of room
             //roomItem.GetComponent<RoomListItem>().SetItem();

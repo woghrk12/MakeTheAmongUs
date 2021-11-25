@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class CharacterMove : MonoBehaviour
 {
@@ -8,11 +9,13 @@ public class CharacterMove : MonoBehaviour
     
     private Animator anim;
     private SpriteRenderer spriteRenderer;
+    private PhotonView PV;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        PV = GetComponent<PhotonView>();
     }
 
     private void FixedUpdate()
@@ -22,8 +25,11 @@ public class CharacterMove : MonoBehaviour
 
     private void Move()
     {
-        MoveByMouse();
-        //MoveByKeyboard();
+        if (PV.IsMine)
+        {
+            MoveByMouse();
+            //MoveByKeyboard();
+        }
     }
 
     private void SetWalkAnimation( bool value)
@@ -40,7 +46,7 @@ public class CharacterMove : MonoBehaviour
         if (isWalk)
         {
             transform.position += dir * speed * Time.deltaTime;
-            ChangeFlipX(dir);
+            PV.RPC("ChangeFlipXRPC", RpcTarget.AllBufferedViaServer, dir);
         }
         
         SetWalkAnimation(isWalk);
@@ -57,13 +63,14 @@ public class CharacterMove : MonoBehaviour
         if(isWalk)
         {
             transform.position += dir * speed * Time.deltaTime;
-            ChangeFlipX(dir);
+            PV.RPC("ChangeFlipXRPC", RpcTarget.AllBufferedViaServer, dir);
         }
 
         SetWalkAnimation(isWalk);
     }
 
-    private void ChangeFlipX(Vector3 dir)
+    [PunRPC]
+    private void ChangeFlipXRPC(Vector3 dir)
     {
         bool curFlipX = spriteRenderer.flipX;
         spriteRenderer.flipX = (dir.x != 0) ? (dir.x < 0) : curFlipX;
