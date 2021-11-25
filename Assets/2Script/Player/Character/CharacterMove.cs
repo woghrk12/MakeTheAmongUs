@@ -20,15 +20,23 @@ public class CharacterMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
+        if (PV.IsMine)
+        {
+            Move();
+        }
     }
 
     private void Move()
     {
-        if (PV.IsMine)
+        switch (PlayerSetting.controlMode)
         {
-            MoveByMouse();
-            //MoveByKeyboard();
+            case EControlMode.Mouse:
+                MoveByMouse();
+                break;
+
+            case EControlMode.Keyboard:
+                MoveByKeyboard();
+                break;
         }
     }
 
