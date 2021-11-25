@@ -30,9 +30,6 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
-    [SerializeField] private UnityEngine.UI.Text text;
-    private string statusText;
-
     public List<RoomInfo> roomList { get; private set; }
 
     private void Awake()
@@ -58,15 +55,6 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.GameVersion = gameVersion;
         PhotonNetwork.SendRate = 60;
         PhotonNetwork.SerializationRate = 30;
-    }
-
-    private void Update()
-    {
-        if (SceneManager.GetActiveScene().name.Equals("MainMenu"))
-        {
-            statusText = PhotonNetwork.NetworkClientState.ToString();
-            text.text = $"Status : {statusText}";
-        }
     }
 
     public void Connect() => PhotonNetwork.ConnectUsingSettings();

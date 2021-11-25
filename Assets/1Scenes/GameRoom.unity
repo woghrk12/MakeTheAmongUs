@@ -5716,7 +5716,7 @@ GameObject:
   - component: {fileID: 646945657}
   - component: {fileID: 646945656}
   m_Layer: 5
-  m_Name: ExitGame Button
+  m_Name: ExitGameRoom Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5788,7 +5788,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1448119050}
         m_TargetAssemblyTypeName: GameRoomSettingUI, Assembly-CSharp
-        m_MethodName: OnClickExitGameButton
+        m_MethodName: OnClickExitGameRoomButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
