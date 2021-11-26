@@ -7,12 +7,11 @@ public class GameRoomManager : MonoBehaviourPunCallbacks
 {
     public override void OnJoinedRoom()
     {
-        SpawnCharacter();
+        SpawnPlayer();
     }
 
-    private void SpawnCharacter()
+    private void SpawnPlayer()
     {
-        var spawnPositions = FindObjectOfType<SpawnPositions>();
-        PhotonNetwork.Instantiate("Room Player", spawnPositions.GetSpawnPosition(), Quaternion.identity);
+        PhotonNetwork.Instantiate("Among Us Player", Vector3.zero, Quaternion.identity);
     }
 }
