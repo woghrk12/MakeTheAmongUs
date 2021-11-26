@@ -6,9 +6,7 @@ using Photon.Pun;
 public class AmongUsPlayer : MonoBehaviour
 {
     public static AmongUsPlayer MyPlayer;
-
     public EPlayerColor playerColor;
-
     private PhotonView PV;
     private GameObject playerCharacter;
 
@@ -24,7 +22,6 @@ public class AmongUsPlayer : MonoBehaviour
         if (PV.IsMine)
         {
             MyPlayer = this;
-            playerColor = (EPlayerColor)GameRoomManager.instance.GetEnableColor();
             CreateRoomPlayer();
         }
     }
@@ -33,6 +30,6 @@ public class AmongUsPlayer : MonoBehaviour
     {
         var spawnPositions = FindObjectOfType<SpawnPositions>();
         playerCharacter = PhotonNetwork.Instantiate("Room Player", spawnPositions.GetSpawnPosition(), Quaternion.identity);
-        playerCharacter.GetComponent<CharacterColor>().PV.RPC("SetCharacterColorRPC", RpcTarget.AllBuffered, (int)playerColor);
+        playerCharacter.GetComponent<CharacterColor>().PV.RPC("SetCharacterColorRPC", RpcTarget.AllBuffered, (int)playerColor)
     }
 }

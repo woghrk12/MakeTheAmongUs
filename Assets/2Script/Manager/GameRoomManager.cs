@@ -5,6 +5,17 @@ using Photon.Pun;
 
 public class GameRoomManager : MonoBehaviourPunCallbacks
 {
+    public static GameRoomManager instance;
+
+    public bool[] isExistColor;
+
+    private void Awake()
+    {
+        instance = this;
+
+        isExistColor = new bool[(int)EPlayerColor.End];
+    }
+
     public override void OnJoinedRoom()
     {
         SpawnPlayer();
@@ -12,6 +23,19 @@ public class GameRoomManager : MonoBehaviourPunCallbacks
 
     private void SpawnPlayer()
     {
-        PhotonNetwork.Instantiate("Among Us Player", Vector3.zero, Quaternion.identity);
+        var player = PhotonNetwork.Instantiate("Among Us Player", Vector3.zero, Quaternion.identity);
+    }
+
+    public int GetEnableColor()
+    {
+        int idx;
+
+        for (idx = 0; idx < isExistColor.Length; idx++)
+        {
+            if (!isExistColor[idx])
+                break;
+        }
+
+        return idx;
     }
 }
