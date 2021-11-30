@@ -8,8 +8,6 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class CreateRoomUI : MonoBehaviour
 {
-    [SerializeField] private GameObject onlineUI;
-
     [SerializeField] private List<Image> crewImages;
     [SerializeField] private List<Button> maxPlayerButtons;
     [SerializeField] private List<Button> imposterButtons;
@@ -44,7 +42,7 @@ public class CreateRoomUI : MonoBehaviour
 
     private void CloseCreateRoomUI()
     {
-        onlineUI.SetActive(true);
+        MainMenuUIManager.instance.OnlineUI.gameObject.SetActive(true);
         gameObject.SetActive(false);
     }
 

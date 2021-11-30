@@ -5,8 +5,6 @@ using Photon.Pun;
 
 public class MainUI : MonoBehaviour
 {
-    [SerializeField] private GameObject settingUI;
-    [SerializeField] private GameObject onlineUI;
     [SerializeField] private UnityEngine.UI.Text onlineButtonText;
     [SerializeField] private UnityEngine.UI.Button onlineButton;
 
@@ -32,14 +30,14 @@ public class MainUI : MonoBehaviour
 
     private void ActiveSettingUI()
     {
-        settingUI.SetActive(true);
+        MainMenuUIManager.instance.SettingUI.gameObject.SetActive(true);
     }
 
     private IEnumerator ActiveOnlineUI()
     {
         yield return WaitForConnect();
 
-        onlineUI.SetActive(true);
+        MainMenuUIManager.instance.OnlineUI.gameObject.SetActive(true);
         gameObject.SetActive(false);
     }
 
