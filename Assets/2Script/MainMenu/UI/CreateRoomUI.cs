@@ -42,8 +42,7 @@ public class CreateRoomUI : MonoBehaviour
 
     private void CloseCreateRoomUI()
     {
-        MainMenuUIManager.instance.OnlineUI.gameObject.SetActive(true);
-        gameObject.SetActive(false);
+        MainMenuUIManager.instance.ChangeUI(EMainMenuPanelType.OnlineUI, EMainMenuPanelType.CreateRoomUI);
     }
 
     private void UpdateMaxPlayerCount(int value)

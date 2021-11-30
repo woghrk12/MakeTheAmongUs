@@ -30,15 +30,14 @@ public class MainUI : MonoBehaviour
 
     private void ActiveSettingUI()
     {
-        MainMenuUIManager.instance.SettingUI.gameObject.SetActive(true);
+        MainMenuUIManager.instance.ChangeUI(EMainMenuPanelType.SettingUI);
     }
 
     private IEnumerator ActiveOnlineUI()
     {
         yield return WaitForConnect();
 
-        MainMenuUIManager.instance.OnlineUI.gameObject.SetActive(true);
-        gameObject.SetActive(false);
+        MainMenuUIManager.instance.ChangeUI(EMainMenuPanelType.OnlineUI, EMainMenuPanelType.MainUI);
     }
 
     private IEnumerator WaitForConnect()

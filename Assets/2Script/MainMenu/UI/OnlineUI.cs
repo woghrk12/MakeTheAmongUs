@@ -14,16 +14,14 @@ public class OnlineUI : MonoBehaviour
     {
         if (CheckNickname(nicknameInput.text))
         {
-            MainMenuUIManager.instance.CreateRoomUI.gameObject.SetActive(true);
-            gameObject.SetActive(false);
+            MainMenuUIManager.instance.ChangeUI(EMainMenuPanelType.CreateRoomUI, EMainMenuPanelType.OnlineUI);
         }
     }
     private void OpenJoinRoomUI()
     {
         if (CheckNickname(nicknameInput.text))
         {
-            MainMenuUIManager.instance.JoinRoomUI.gameObject.SetActive(true);
-            gameObject.SetActive(false);
+            MainMenuUIManager.instance.ChangeUI(EMainMenuPanelType.JoinRoomUI, EMainMenuPanelType.OnlineUI);
         }
     }
 
@@ -31,8 +29,7 @@ public class OnlineUI : MonoBehaviour
     {
         AmongUsNetworkManager.Instance.Disconnect();
 
-        MainMenuUIManager.instance.MainUI.gameObject.SetActive(true);
-        gameObject.SetActive(false);
+        MainMenuUIManager.instance.ChangeUI(EMainMenuPanelType.MainUI, EMainMenuPanelType.OnlineUI);
     }
 
     private void SetNickname(string value)
