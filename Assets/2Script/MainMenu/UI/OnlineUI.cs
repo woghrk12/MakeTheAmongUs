@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class OnlineUI : MonoBehaviour
 {
-    [SerializeField] private GameObject mainUI;
-    [SerializeField] private GameObject createRoomUI;
-    [SerializeField] private GameObject joinRoomUI;
-
     [SerializeField] private UnityEngine.UI.InputField nicknameInput;
 
     public void OnClickBackButton() => CloseOnlineUI();
@@ -18,16 +14,14 @@ public class OnlineUI : MonoBehaviour
     {
         if (CheckNickname(nicknameInput.text))
         {
-            createRoomUI.SetActive(true);
-            gameObject.SetActive(false);
+            MainMenuUIManager.instance.ChangeUI(EMainMenuPanelType.CreateRoomUI, EMainMenuPanelType.OnlineUI);
         }
     }
     private void OpenJoinRoomUI()
     {
         if (CheckNickname(nicknameInput.text))
         {
-            joinRoomUI.SetActive(true);
-            gameObject.SetActive(false);
+            MainMenuUIManager.instance.ChangeUI(EMainMenuPanelType.JoinRoomUI, EMainMenuPanelType.OnlineUI);
         }
     }
 
@@ -35,8 +29,7 @@ public class OnlineUI : MonoBehaviour
     {
         AmongUsNetworkManager.Instance.Disconnect();
 
-        mainUI.SetActive(true);
-        gameObject.SetActive(false);
+        MainMenuUIManager.instance.ChangeUI(EMainMenuPanelType.MainUI, EMainMenuPanelType.OnlineUI);
     }
 
     private void SetNickname(string value)

@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 41743543}
   - component: {fileID: 41743542}
   - component: {fileID: 41743541}
+  - component: {fileID: 41743545}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -390,6 +391,29 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &41743545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41743540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f8bb3772e04d34ba1dac07be3aba42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelList:
+  - {fileID: 699846244}
+  - {fileID: 1545954977}
+  - {fileID: 2126444506}
+  - {fileID: 1057821689}
+  - {fileID: 745391052}
+  mainUI: {fileID: 699846246}
+  settingUI: {fileID: 1545954980}
+  onlineUI: {fileID: 2126444508}
+  createRoomUI: {fileID: 1057821691}
+  joinRoomUI: {fileID: 745391054}
 --- !u!1 &58358644
 GameObject:
   m_ObjectHideFlags: 0
@@ -3220,8 +3244,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c64570c6f00a9c40b634310806525a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingUI: {fileID: 1545954977}
-  onlineUI: {fileID: 2126444506}
   onlineButtonText: {fileID: 1804823184}
   onlineButton: {fileID: 138545729}
 --- !u!1 &741707273
@@ -3408,7 +3430,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d1c8dd48aaf3d48b82381086d179ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlineUI: {fileID: 2126444506}
   roomListPanel: {fileID: 1355087748}
   roomItemPrefab: {fileID: 592252248285659346, guid: e2ed75542fec5734090970085ffa7175, type: 3}
   roomItems: []
@@ -4611,7 +4632,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ded2da46630c44a925177da2a0ba70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlineUI: {fileID: 2126444506}
   crewImages:
   - {fileID: 341876536}
   - {fileID: 498016420}
@@ -14021,7 +14041,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b05f9cd81e9d1941ae592074e9fb7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainUI: {fileID: 699846244}
-  createRoomUI: {fileID: 1057821689}
-  joinRoomUI: {fileID: 745391052}
   nicknameInput: {fileID: 485889648}

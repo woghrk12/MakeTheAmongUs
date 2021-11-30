@@ -6,7 +6,6 @@ using Photon.Realtime;
 
 public class JoinRoomUI : MonoBehaviour
 {
-    [SerializeField] private GameObject onlineUI;
     [SerializeField] private GameObject roomListPanel;
     [SerializeField] private GameObject roomItemPrefab;
     [SerializeField] private List<GameObject> roomItems;
@@ -28,8 +27,7 @@ public class JoinRoomUI : MonoBehaviour
 
     private void CloseJoinRoomUI()
     {
-        onlineUI.SetActive(true);
-        gameObject.SetActive(false);
+        MainMenuUIManager.instance.ChangeUI(EMainMenuPanelType.OnlineUI, EMainMenuPanelType.JoinRoomUI);
     }
 
     private IEnumerator RoomListItemUpdateCo()
