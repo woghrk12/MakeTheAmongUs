@@ -7,6 +7,8 @@ public class GameRoomManager : MonoBehaviourPunCallbacks
 {
     public static GameRoomManager instance;
 
+    public PhotonView PV;
+
     public bool[] isExistColor;
 
     private void Awake()
@@ -24,6 +26,12 @@ public class GameRoomManager : MonoBehaviourPunCallbacks
     private void SpawnPlayer()
     {
         var player = PhotonNetwork.Instantiate("Among Us Player", Vector3.zero, Quaternion.identity);
+    }
+    
+    [PunRPC]
+    public void AddExistColor(int color)
+    {
+        isExistColor[color] = true;
     }
 
     public int GetEnableColor()

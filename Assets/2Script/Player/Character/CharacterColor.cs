@@ -22,6 +22,5 @@ public class CharacterColor : MonoBehaviour
     public void SetCharacterColorRPC(int color)
     {
         spriteRender.material.SetColor("_PlayerColor", PlayerColor.GetColor((EPlayerColor)color));
-        GameRoomManager.instance.isExistColor[color] = true;
     }
 }

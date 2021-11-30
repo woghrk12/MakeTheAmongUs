@@ -34,5 +34,6 @@ public class AmongUsPlayer : MonoBehaviour
         var spawnPositions = FindObjectOfType<SpawnPositions>();
         playerCharacter = PhotonNetwork.Instantiate("Room Player", spawnPositions.GetSpawnPosition(), Quaternion.identity);
         playerCharacter.GetComponent<CharacterColor>().PV.RPC("SetCharacterColorRPC", RpcTarget.AllBuffered, (int)playerColor);
+        GameRoomManager.instance.PV.RPC("AddExistColor", RpcTarget.AllBuffered, (int)playerColor);
     }
 }
