@@ -12,16 +12,19 @@ public class MainMenuUIManager : MonoBehaviour
     public static MainMenuUIManager instance;
 
     [SerializeField] private List<GameObject> panelList;
-   
+    
     private void Awake()
     {
         instance = this;
     }
 
-    public void ChangeUI(EMainMenuPanelType openPanel, EMainMenuPanelType closePanel = EMainMenuPanelType.None)
+    public void OpenPanel(EMainMenuPanelType panel)
     {
-        if(closePanel != EMainMenuPanelType.None)
-            panelList[(int)closePanel].SetActive(false);
-        panelList[(int)openPanel].SetActive(true);
+        panelList[(int)panel].SetActive(true);
+    }
+
+    public void ClosePanel(EMainMenuPanelType panel)
+    {
+        panelList[(int)panel].SetActive(false);
     }
 }

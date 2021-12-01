@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CustomizeLaptop : MonoBehaviour
 {
-    [SerializeField] private UnityEngine.UI.Button useButton;
+    [SerializeField] private Sprite customizeUISprite;
 
     private SpriteRenderer spriteRenderer;
 
@@ -22,6 +22,10 @@ public class CustomizeLaptop : MonoBehaviour
         if (character != null && character.PV.IsMine)
         {
             spriteRenderer.material.SetFloat("_Highlighted", 1f);
+            GameRoomUIManager.instance.SetUseButton(
+                customizeUISprite, 
+                ()=>GameRoomUIManager.instance.OpenPanel(EGameRoomPanelType.CustomUI)
+                );
         }
     }
 
@@ -32,6 +36,7 @@ public class CustomizeLaptop : MonoBehaviour
         if (character != null && character.PV.IsMine)
         {
             spriteRenderer.material.SetFloat("_Highlighted", 0f);
+            GameRoomUIManager.instance.UnsetUseButton();
         }
     }
 }

@@ -27,7 +27,8 @@ public class JoinRoomUI : MonoBehaviour
 
     private void CloseJoinRoomUI()
     {
-        MainMenuUIManager.instance.ChangeUI(EMainMenuPanelType.OnlineUI, EMainMenuPanelType.JoinRoomUI);
+        MainMenuUIManager.instance.OpenPanel(EMainMenuPanelType.OnlineUI);
+        MainMenuUIManager.instance.ClosePanel(EMainMenuPanelType.JoinRoomUI);
     }
 
     private IEnumerator RoomListItemUpdateCo()
