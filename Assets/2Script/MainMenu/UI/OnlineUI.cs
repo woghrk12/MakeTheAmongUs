@@ -14,14 +14,16 @@ public class OnlineUI : MonoBehaviour
     {
         if (CheckNickname(nicknameInput.text))
         {
-            MainMenuUIManager.instance.ChangeUI(EMainMenuPanelType.CreateRoomUI, EMainMenuPanelType.OnlineUI);
+            MainMenuUIManager.instance.OpenPanel(EMainMenuPanelType.CreateRoomUI);
+            MainMenuUIManager.instance.ClosePanel(EMainMenuPanelType.OnlineUI);
         }
     }
     private void OpenJoinRoomUI()
     {
         if (CheckNickname(nicknameInput.text))
         {
-            MainMenuUIManager.instance.ChangeUI(EMainMenuPanelType.JoinRoomUI, EMainMenuPanelType.OnlineUI);
+            MainMenuUIManager.instance.OpenPanel(EMainMenuPanelType.JoinRoomUI);
+            MainMenuUIManager.instance.ClosePanel(EMainMenuPanelType.OnlineUI);
         }
     }
 
@@ -29,7 +31,8 @@ public class OnlineUI : MonoBehaviour
     {
         AmongUsNetworkManager.Instance.Disconnect();
 
-        MainMenuUIManager.instance.ChangeUI(EMainMenuPanelType.MainUI, EMainMenuPanelType.OnlineUI);
+        MainMenuUIManager.instance.OpenPanel(EMainMenuPanelType.MainUI);
+        MainMenuUIManager.instance.ClosePanel(EMainMenuPanelType.OnlineUI);
     }
 
     private void SetNickname(string value)
