@@ -12,7 +12,7 @@ public class MainMenuUIManager : MonoBehaviour
     public static MainMenuUIManager instance;
 
     [SerializeField] private List<GameObject> panelList;
-   
+    
     private void Awake()
     {
         instance = this;
