@@ -17,4 +17,14 @@ public class GameRoomUIManager : MonoBehaviour
     {
         instance = this;
     }
+
+    public void OpenPanel(EGameRoomPanelType panel)
+    {
+        panelList[(int)panel].SetActive(true);
+    }
+
+    public void ClosePanel(EGameRoomPanelType panel)
+    {
+        panelList[(int)panel].SetActive(false);
+    }
 }

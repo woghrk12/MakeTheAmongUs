@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameRoomMainUI : MonoBehaviour
 {
-    [SerializeField] private GameObject gameRoomSettingUI;
-
     public void OnClickSettingButton()
     {
         ActiveSettingUI();
@@ -13,6 +11,6 @@ public class GameRoomMainUI : MonoBehaviour
 
     private void ActiveSettingUI()
     {
-        gameRoomSettingUI.SetActive(true);
+        GameRoomUIManager.instance.OpenPanel(EGameRoomPanelType.SettingUI);
     }
 }
