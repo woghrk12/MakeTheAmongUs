@@ -36,4 +36,9 @@ public class AmongUsPlayer : MonoBehaviour
         playerCharacter.GetComponent<CharacterColor>().PV.RPC("SetCharacterColorRPC", RpcTarget.AllBuffered, (int)playerColor);
         GameRoomManager.instance.PV.RPC("AddExistColor", RpcTarget.AllBuffered, (int)playerColor);
     }
+
+    public void SetMovable(bool value)
+    {
+        playerCharacter.GetComponent<CharacterMove>().IsMovable = value;
+    }
 }

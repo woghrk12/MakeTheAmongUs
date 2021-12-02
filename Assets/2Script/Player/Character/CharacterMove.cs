@@ -6,7 +6,21 @@ using Photon.Pun;
 public class CharacterMove : MonoBehaviour
 {
     [SerializeField] private float speed;
-    
+    private bool isMovable = true;
+
+    public bool IsMovable
+    { 
+        set
+        {
+            isMovable = value;
+            if (!isMovable) SetWalkAnimation(isMovable);
+        }
+        get
+        {
+            return isMovable;
+        }
+    }
+
     private Animator anim;
     private SpriteRenderer spriteRenderer;
     private PhotonView PV;
@@ -20,7 +34,7 @@ public class CharacterMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (PV.IsMine)
+        if (PV.IsMine && isMovable)
         {
             Move();
         }
@@ -40,7 +54,7 @@ public class CharacterMove : MonoBehaviour
         }
     }
 
-    private void SetWalkAnimation( bool value)
+    private void SetWalkAnimation(bool value)
     {
         anim.SetBool("isWalk", value);
     }
