@@ -15,6 +15,12 @@ public class GameRoomSettingUI : SettingUI
         CloseSettingUI();
     }
 
+    public override void CloseSettingUI()
+    {
+        base.CloseSettingUI();
+        AmongUsPlayer.MyPlayer.SetMovable(true);
+    }
+
     public void OnClickExitGameRoomButton()
     {
         ExitGameRoom();

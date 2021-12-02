@@ -28,7 +28,7 @@ public class SettingUI : MonoBehaviour
         CloseSettingUI();
     }
 
-    public void CloseSettingUI()
+    public virtual void CloseSettingUI()
     {
         StartCoroutine(CloseSettingUICo());
     }
