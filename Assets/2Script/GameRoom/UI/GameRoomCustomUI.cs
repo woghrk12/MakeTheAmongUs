@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class GameRoomCustomUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void OnClickBackground()
     {
-        
+        CloseCustomUI();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void CloseCustomUI()
     {
-        
+        GameRoomUIManager.instance.OpenPanel(EGameRoomPanelType.MainUI);
+        GameRoomUIManager.instance.ClosePanel(EGameRoomPanelType.CustomUI);
     }
 }
+
