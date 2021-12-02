@@ -39,6 +39,6 @@ public class AmongUsPlayer : MonoBehaviour
 
     public void SetMovable(bool value)
     {
-        playerCharacter.GetComponent<CharacterMove>().isMovable = value;
+        playerCharacter.GetComponent<CharacterMove>().IsMovable = value;
     }
 }
