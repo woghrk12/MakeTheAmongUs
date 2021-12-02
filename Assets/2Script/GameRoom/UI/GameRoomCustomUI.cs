@@ -11,8 +11,14 @@ public class GameRoomCustomUI : MonoBehaviour
 
     private void CloseCustomUI()
     {
-        GameRoomUIManager.instance.OpenPanel(EGameRoomPanelType.MainUI);
-        GameRoomUIManager.instance.ClosePanel(EGameRoomPanelType.CustomUI);
+        GameRoomUIManager.instance.OpenMainUI();
+        GameRoomUIManager.instance.CloseCustomUI();
+    }
+
+    public void OpenCustomUI()
+    {
+        GameRoomUIManager.instance.OpenCustomUI();
+        GameRoomUIManager.instance.CloseMainUI();
     }
 }
 

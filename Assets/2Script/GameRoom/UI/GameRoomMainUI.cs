@@ -11,6 +11,6 @@ public class GameRoomMainUI : MonoBehaviour
 
     private void ActiveSettingUI()
     {
-        GameRoomUIManager.instance.OpenPanel(EGameRoomPanelType.SettingUI);
+        GameRoomUIManager.instance.OpenSettingUI();
     }
 }

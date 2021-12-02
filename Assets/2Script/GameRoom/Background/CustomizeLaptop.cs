@@ -25,8 +25,8 @@ public class CustomizeLaptop : MonoBehaviour
             GameRoomUIManager.instance.SetUseButton(
                 customizeUISprite, 
                 ()=> {
-                    GameRoomUIManager.instance.OpenPanel(EGameRoomPanelType.CustomUI);
-                    GameRoomUIManager.instance.ClosePanel(EGameRoomPanelType.MainUI);
+                    GameRoomUIManager.instance.OpenCustomUI();
+                    GameRoomUIManager.instance.CloseMainUI();
                     }
                 );
         }
