@@ -6,7 +6,9 @@ using Photon.Pun;
 public class CharacterMove : MonoBehaviour
 {
     [SerializeField] private float speed;
-    
+
+    public bool isMovable;
+
     private Animator anim;
     private SpriteRenderer spriteRenderer;
     private PhotonView PV;

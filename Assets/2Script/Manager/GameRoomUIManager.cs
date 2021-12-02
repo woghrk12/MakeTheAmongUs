@@ -26,6 +26,7 @@ public class GameRoomUIManager : MonoBehaviour
     public void OpenPanel(EGameRoomPanelType panel)
     {
         panelList[(int)panel].SetActive(true);
+        AmongUsPlayer.MyPlayer.SetMovable((panel == EGameRoomPanelType.MainUI) ? true : false);
     }
 
     public void ClosePanel(EGameRoomPanelType panel)
