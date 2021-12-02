@@ -18,13 +18,25 @@ public class MainMenuUIManager : MonoBehaviour
         instance = this;
     }
 
-    public void OpenPanel(EMainMenuPanelType panel)
-    {
-        panelList[(int)panel].SetActive(true);
-    }
+    private void OpenPanel(EMainMenuPanelType panel) => panelList[(int)panel].SetActive(true);
+    private void ClosePanel(EMainMenuPanelType panel) => panelList[(int)panel].SetActive(false);
 
-    public void ClosePanel(EMainMenuPanelType panel)
-    {
-        panelList[(int)panel].SetActive(false);
-    }
+    #region UIOnFunction
+
+    public void OpenMainUI() => OpenPanel(EMainMenuPanelType.MainUI);
+    public void OpenSettingUI() => OpenPanel(EMainMenuPanelType.SettingUI);
+    public void OpenOnlineUI() => OpenPanel(EMainMenuPanelType.OnlineUI);
+    public void OpenCreateRoomUI() => OpenPanel(EMainMenuPanelType.CreateRoomUI);
+    public void OpenJoinRoomUI() => OpenPanel(EMainMenuPanelType.JoinRoomUI);
+
+    #endregion
+    #region UIOffFunction
+
+    public void CloseMainUI() => ClosePanel(EMainMenuPanelType.MainUI);
+    public void CloseSettingUI() => ClosePanel(EMainMenuPanelType.SettingUI);
+    public void CloseOnlineUI() => ClosePanel(EMainMenuPanelType.OnlineUI);
+    public void CloseCreateRoomUI() => ClosePanel(EMainMenuPanelType.CreateRoomUI);
+    public void CloseJoinRoomUI() => ClosePanel(EMainMenuPanelType.JoinRoomUI);
+
+    #endregion
 }

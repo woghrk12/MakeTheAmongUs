@@ -23,17 +23,6 @@ public class GameRoomUIManager : MonoBehaviour
         instance = this;
     }
 
-    public void OpenPanel(EGameRoomPanelType panel)
-    {
-        panelList[(int)panel].SetActive(true);
-        AmongUsPlayer.MyPlayer.SetMovable((panel == EGameRoomPanelType.MainUI) ? true : false);
-    }
-
-    public void ClosePanel(EGameRoomPanelType panel)
-    {
-        panelList[(int)panel].SetActive(false);
-    }
-
     public void SetUseButton(Sprite sprite, UnityAction action)
     {
         useButton.onClick.AddListener(action);
@@ -49,4 +38,42 @@ public class GameRoomUIManager : MonoBehaviour
         useButton.image.color = new Color(1f, 1f, 1f, 0.5f);
         useButton.interactable = false;
     }
+
+    private void OpenPanel(EGameRoomPanelType panel) => panelList[(int)panel].SetActive(true);
+    private void ClosePanel(EGameRoomPanelType panel) => panelList[(int)panel].SetActive(false);
+
+    #region UIOnFunction
+
+    public void OpenMainUI() => OpenPanel(EGameRoomPanelType.MainUI);
+
+    public void OpenSettingUI()
+    {
+        OpenPanel(EGameRoomPanelType.SettingUI);
+        AmongUsPlayer.MyPlayer.SetMovable(false);
+    }
+  
+    public void OpenCustomUI()
+    {
+        OpenPanel(EGameRoomPanelType.CustomUI);
+        AmongUsPlayer.MyPlayer.SetMovable(false);
+    }
+
+    #endregion
+    #region UIOffFunction
+
+    public void CloseMainUI() => ClosePanel(EGameRoomPanelType.MainUI);
+
+    public void CloseSettingUI()
+    {
+        ClosePanel(EGameRoomPanelType.SettingUI);
+        AmongUsPlayer.MyPlayer.SetMovable(true);
+    }
+
+    public void CloseCustomUI()
+    {
+        ClosePanel(EGameRoomPanelType.CustomUI);
+        AmongUsPlayer.MyPlayer.SetMovable(true);
+    }
+
+    #endregion
 }

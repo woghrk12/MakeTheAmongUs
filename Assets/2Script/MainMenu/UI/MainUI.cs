@@ -30,15 +30,15 @@ public class MainUI : MonoBehaviour
 
     private void ActiveSettingUI()
     {
-        MainMenuUIManager.instance.OpenPanel(EMainMenuPanelType.SettingUI);
+        MainMenuUIManager.instance.OpenSettingUI();
     }
 
     private IEnumerator ActiveOnlineUI()
     {
         yield return WaitForConnect();
 
-        MainMenuUIManager.instance.OpenPanel(EMainMenuPanelType.OnlineUI);
-        MainMenuUIManager.instance.ClosePanel(EMainMenuPanelType.MainUI);
+        MainMenuUIManager.instance.OpenOnlineUI();
+        MainMenuUIManager.instance.CloseMainUI();
     }
 
     private IEnumerator WaitForConnect()

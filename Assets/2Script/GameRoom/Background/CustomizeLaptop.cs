@@ -24,7 +24,10 @@ public class CustomizeLaptop : MonoBehaviour
             spriteRenderer.material.SetFloat("_Highlighted", 1f);
             GameRoomUIManager.instance.SetUseButton(
                 customizeUISprite, 
-                ()=>GameRoomUIManager.instance.OpenPanel(EGameRoomPanelType.CustomUI)
+                ()=> {
+                    GameRoomUIManager.instance.OpenCustomUI();
+                    GameRoomUIManager.instance.CloseMainUI();
+                    }
                 );
         }
     }
