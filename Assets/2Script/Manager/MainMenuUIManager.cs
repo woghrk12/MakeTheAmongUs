@@ -18,15 +18,8 @@ public class MainMenuUIManager : MonoBehaviour
         instance = this;
     }
 
-    private void OpenPanel(EMainMenuPanelType panel)
-    {
-        panelList[(int)panel].SetActive(true);
-    }
-
-    private void ClosePanel(EMainMenuPanelType panel)
-    {
-        panelList[(int)panel].SetActive(false);
-    }
+    private void OpenPanel(EMainMenuPanelType panel) => panelList[(int)panel].SetActive(true);
+    private void ClosePanel(EMainMenuPanelType panel) => panelList[(int)panel].SetActive(false);
 
     #region UIOnFunction
 
