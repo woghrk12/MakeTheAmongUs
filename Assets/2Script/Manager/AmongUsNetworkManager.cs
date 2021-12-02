@@ -105,16 +105,16 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
 
     public void CreateRoom(RoomOptions roomOptions)
     {
-        PhotonNetwork.CreateRoom(PlayerSetting.nickname, roomOptions);
         SceneManager.sceneLoaded += LoadEnd;
         StartCoroutine(Load());
+        PhotonNetwork.CreateRoom(PlayerSetting.nickname, roomOptions);
     }
 
     public void JoinRoom(string roomName)
     {
-        PhotonNetwork.JoinRoom(roomName);
         SceneManager.sceneLoaded += LoadEnd;
         StartCoroutine(Load());
+        PhotonNetwork.JoinRoom(roomName);
     }
 
     private IEnumerator Load()
