@@ -42,8 +42,8 @@ public class CreateRoomUI : MonoBehaviour
 
     private void CloseCreateRoomUI()
     {
-        MainMenuUIManager.instance.OpenPanel(EMainMenuPanelType.OnlineUI);
-        MainMenuUIManager.instance.ClosePanel(EMainMenuPanelType.CreateRoomUI);
+        MainMenuUIManager.instance.OpenOnlineUI();
+        MainMenuUIManager.instance.CloseCreateRoomUI();
     }
 
     private void UpdateMaxPlayerCount(int value)
