@@ -9,7 +9,7 @@ public class GameRoomManager : MonoBehaviourPunCallbacks
 
     public PhotonView PV;
 
-    public bool[] isExistColor;
+    public bool[] isExistColor { private set; get; }
 
     private void Awake()
     {
@@ -32,6 +32,12 @@ public class GameRoomManager : MonoBehaviourPunCallbacks
     public void AddExistColor(int color)
     {
         isExistColor[color] = true;
+    }
+
+    [PunRPC]
+    public void RemoveExistColor(int color)
+    {
+        isExistColor[color] = false;
     }
 
     public int GetEnableColor()

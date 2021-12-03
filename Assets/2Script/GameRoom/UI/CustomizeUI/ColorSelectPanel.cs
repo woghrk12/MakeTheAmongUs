@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class ColorSelectPanel : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class ColorSelectPanel : MonoBehaviour
 
     private void OnEnable()
     {
+        UpdateAllColorButton();
         SetPreviewImageColor((int)AmongUsPlayer.MyPlayer.playerColor);
     }
 
@@ -26,11 +28,27 @@ public class ColorSelectPanel : MonoBehaviour
 
     public void OnClickColorButton(int color)
     {
-        AmongUsPlayer player = AmongUsPlayer.MyPlayer;
-        if (player != null)
+        var player = AmongUsPlayer.MyPlayer;
+        int oldColor = (int)player.playerColor;
+
+        player.PV.RPC("SetPlayerColor", RpcTarget.AllBuffered, color);
+
+        UpdateColorButton(oldColor);
+        UpdateColorButton(color);
+
+        SetPreviewImageColor(color);
+    }
+
+    private void UpdateAllColorButton()
+    {
+        for (int idx = 0; idx < colorSelectButtons.Count; idx++)
         {
-            player.SetPlayerColor(color);
-            SetPreviewImageColor(color);
+            colorSelectButtons[idx].interactable = !GameRoomManager.instance.isExistColor[idx];
         }
+    }
+
+    private void UpdateColorButton(int color)
+    {
+        colorSelectButtons[color].interactable = !GameRoomManager.instance.isExistColor[color];
     }
 }

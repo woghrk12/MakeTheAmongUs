@@ -9,7 +9,7 @@ public class AmongUsPlayer : MonoBehaviour
 
     public EPlayerColor playerColor;
 
-    private PhotonView PV;
+    public PhotonView PV;
     private GameObject playerCharacter;
 
     private void Awake()
@@ -45,6 +45,17 @@ public class AmongUsPlayer : MonoBehaviour
     [PunRPC]
     public void SetPlayerColor(int color)
     {
-        playerCharacter.GetComponent<CharacterColor>().PV.RPC("SetCharacterColorRPC", RpcTarget.AllBuffered, color);
+        GameRoomManager.instance.PV.RPC("RemoveExistColor", RpcTarget.AllBuffered, (int)playerColor);
+        
+        playerColor = (EPlayerColor)color;
+
+        if (PV.IsMine)
+            playerCharacter.GetComponent<CharacterColor>().PV.RPC(
+                "SetCharacterColorRPC", 
+                RpcTarget.AllBuffered, 
+                (int)playerColor
+                );
+       
+        GameRoomManager.instance.PV.RPC("AddExistColor", RpcTarget.AllBuffered, (int)playerColor);
     }
 }
