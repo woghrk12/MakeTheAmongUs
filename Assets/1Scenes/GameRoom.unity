@@ -17032,7 +17032,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1815714859}
   - component: {fileID: 1815714860}
-  - component: {fileID: 1815714861}
   m_Layer: 5
   m_Name: Color Select
   m_TagString: Untagged
@@ -17074,29 +17073,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterPreview: {fileID: 822590403}
-  colorSelectButtons: []
---- !u!114 &1815714861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815714858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 2
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
+  colorSelectButtons:
+  - {fileID: 1487945797}
+  - {fileID: 2014820173}
+  - {fileID: 448052602}
+  - {fileID: 1509290472}
+  - {fileID: 1008782489}
+  - {fileID: 645189446}
+  - {fileID: 224764300}
+  - {fileID: 645625523}
+  - {fileID: 1749772237}
+  - {fileID: 1830021622}
+  - {fileID: 1298671458}
+  - {fileID: 493896615}
 --- !u!1 &1825717936
 GameObject:
   m_ObjectHideFlags: 0

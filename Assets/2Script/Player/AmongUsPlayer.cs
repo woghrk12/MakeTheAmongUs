@@ -10,7 +10,7 @@ public class AmongUsPlayer : MonoBehaviour
     public EPlayerColor playerColor;
 
     private PhotonView PV;
-    public GameObject playerCharacter { private set; get; }
+    private GameObject playerCharacter;
 
     private void Awake()
     {
@@ -40,5 +40,11 @@ public class AmongUsPlayer : MonoBehaviour
     public void SetMovable(bool value)
     {
         playerCharacter.GetComponent<CharacterMove>().IsMovable = value;
+    }
+
+    [PunRPC]
+    public void SetPlayerColor(int color)
+    {
+        playerCharacter.GetComponent<CharacterColor>().PV.RPC("SetCharacterColorRPC", RpcTarget.AllBuffered, color);
     }
 }

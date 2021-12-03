@@ -27,12 +27,10 @@ public class ColorSelectPanel : MonoBehaviour
     public void OnClickColorButton(int color)
     {
         AmongUsPlayer player = AmongUsPlayer.MyPlayer;
-        player.playerCharacter.GetComponent<CharacterColor>().PV.RPC(
-            "SetCharacterColorRPC", 
-            Photon.Pun.RpcTarget.AllBuffered, 
-            color
-            );
-
-        SetPreviewImageColor(color);
+        if (player != null)
+        {
+            player.SetPlayerColor(color);
+            SetPreviewImageColor(color);
+        }
     }
 }
