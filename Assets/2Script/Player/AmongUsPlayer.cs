@@ -10,7 +10,7 @@ public class AmongUsPlayer : MonoBehaviour
     public EPlayerColor playerColor;
 
     private PhotonView PV;
-    private GameObject playerCharacter;
+    public GameObject playerCharacter { private set; get; }
 
     private void Awake()
     {
