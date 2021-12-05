@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameRoomCustomUI : MonoBehaviour
 {
+    private void Awake()
+    {
+        gameObject.SetActive(false);
+    }
     public void OnClickBackground()
     {
         CloseCustomUI();

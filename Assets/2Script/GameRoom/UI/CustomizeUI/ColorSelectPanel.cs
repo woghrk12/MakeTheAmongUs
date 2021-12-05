@@ -9,10 +9,14 @@ public class ColorSelectPanel : MonoBehaviour
     [SerializeField] private Image characterPreview;
     [SerializeField] private List<Button> colorSelectButtons;
 
+    private PhotonView PV;
+
     private void Awake()
     {
         var inst = Instantiate(characterPreview.material);
         characterPreview.material = inst;
+
+        PV = GetComponent<PhotonView>();
     }
 
     private void OnEnable()
@@ -33,8 +37,8 @@ public class ColorSelectPanel : MonoBehaviour
 
         player.PV.RPC("SetPlayerColor", RpcTarget.AllBuffered, color);
 
-        UpdateColorButton(oldColor);
-        UpdateColorButton(color);
+        PV.RPC("UpdateColorButton", RpcTarget.AllBuffered, oldColor);
+        PV.RPC("UpdateColorButton", RpcTarget.AllBuffered, color);
 
         SetPreviewImageColor(color);
     }
@@ -47,6 +51,7 @@ public class ColorSelectPanel : MonoBehaviour
         }
     }
 
+    [PunRPC]
     private void UpdateColorButton(int color)
     {
         colorSelectButtons[color].interactable = !GameRoomManager.instance.isExistColor[color];
