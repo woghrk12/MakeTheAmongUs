@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class ColorSelectPanel : MonoBehaviour
 {
     [SerializeField] private Image characterPreview;
     [SerializeField] private List<ColorSelectButton> colorSelectButtons;
 
-    private PhotonView PV;
+    public PhotonView PV;
 
     private void Awake()
     {
         var inst = Instantiate(characterPreview.material);
         characterPreview.material = inst;
-
-        PV = GetComponent<PhotonView>();
     }
 
     private void OnEnable()
@@ -52,8 +51,9 @@ public class ColorSelectPanel : MonoBehaviour
     }
 
     [PunRPC]
-    private void UpdateColorButton(int color)
+    public void UpdateColorButton(int color)
     {
         colorSelectButtons[color].SetInteractable(!GameRoomManager.instance.isExistColor[color]);
     }
+
 }

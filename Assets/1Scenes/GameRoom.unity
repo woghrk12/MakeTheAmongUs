@@ -1235,6 +1235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PV: {fileID: 135367343}
+  colorSelectPanel: {fileID: 1815714860}
 --- !u!114 &135367343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17226,6 +17227,7 @@ MonoBehaviour:
   - {fileID: 1830021625}
   - {fileID: 1298671461}
   - {fileID: 493896618}
+  PV: {fileID: 1815714861}
 --- !u!114 &1815714861
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ public class AmongUsPlayer : MonoBehaviour
 {
     public static AmongUsPlayer MyPlayer;
 
+    public int actorNum { private set; get; }
+
     public EPlayerColor playerColor;
 
     public PhotonView PV;
@@ -21,6 +23,8 @@ public class AmongUsPlayer : MonoBehaviour
 
     private void Start()
     {
+        PV.RPC("SetPlayer", RpcTarget.AllBuffered);
+
         if (PV.IsMine)
         {
             MyPlayer = this;
@@ -37,6 +41,12 @@ public class AmongUsPlayer : MonoBehaviour
         GameRoomManager.instance.PV.RPC("AddExistColor", RpcTarget.AllBuffered, (int)playerColor);
     }
 
+    [PunRPC]
+    public void SetPlayer()
+    {
+        actorNum = PV.Owner.ActorNumber;
+    }
+    
     public void SetMovable(bool value)
     {
         playerCharacter.GetComponent<CharacterMove>().IsMovable = value;

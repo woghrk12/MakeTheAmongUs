@@ -9,6 +9,8 @@ public class GameRoomManager : MonoBehaviourPunCallbacks
 
     public PhotonView PV;
 
+    [SerializeField] private ColorSelectPanel colorSelectPanel;
+
     public bool[] isExistColor { private set; get; }
 
     private void Awake()
@@ -32,12 +34,16 @@ public class GameRoomManager : MonoBehaviourPunCallbacks
     public void AddExistColor(int color)
     {
         isExistColor[color] = true;
+        if (colorSelectPanel.gameObject.activeSelf)
+            colorSelectPanel.PV.RPC("UpdateColorButton", RpcTarget.AllBuffered, color);
     }
 
     [PunRPC]
     public void RemoveExistColor(int color)
     {
         isExistColor[color] = false;
+        if (colorSelectPanel.gameObject.activeSelf)
+            colorSelectPanel.PV.RPC("UpdateColorButton", RpcTarget.AllBuffered, color);
     }
 
     public int GetEnableColor()
