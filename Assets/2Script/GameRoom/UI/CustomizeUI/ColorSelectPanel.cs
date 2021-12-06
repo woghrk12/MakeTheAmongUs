@@ -7,7 +7,7 @@ using Photon.Pun;
 public class ColorSelectPanel : MonoBehaviour
 {
     [SerializeField] private Image characterPreview;
-    [SerializeField] private List<Button> colorSelectButtons;
+    [SerializeField] private List<ColorSelectButton> colorSelectButtons;
 
     private PhotonView PV;
 
@@ -47,13 +47,13 @@ public class ColorSelectPanel : MonoBehaviour
     {
         for (int idx = 0; idx < colorSelectButtons.Count; idx++)
         {
-            colorSelectButtons[idx].interactable = !GameRoomManager.instance.isExistColor[idx];
+            colorSelectButtons[idx].SetInteractable(!GameRoomManager.instance.isExistColor[idx]);
         }
     }
 
     [PunRPC]
     private void UpdateColorButton(int color)
     {
-        colorSelectButtons[color].interactable = !GameRoomManager.instance.isExistColor[color];
+        colorSelectButtons[color].SetInteractable(!GameRoomManager.instance.isExistColor[color]);
     }
 }
