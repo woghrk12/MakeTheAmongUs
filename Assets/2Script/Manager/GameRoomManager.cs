@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class GameRoomManager : MonoBehaviourPunCallbacks
 {
@@ -29,13 +30,13 @@ public class GameRoomManager : MonoBehaviourPunCallbacks
     {
         var player = PhotonNetwork.Instantiate("Among Us Player", Vector3.zero, Quaternion.identity);
     }
-    
+
     [PunRPC]
     public void AddExistColor(int color)
     {
         isExistColor[color] = true;
         if (colorSelectPanel.gameObject.activeSelf)
-            colorSelectPanel.PV.RPC("UpdateColorButton", RpcTarget.AllBuffered, color);
+            colorSelectPanel.PV.RPC("UpdateColorButton", RpcTarget.All, color);
     }
 
     [PunRPC]
@@ -43,7 +44,7 @@ public class GameRoomManager : MonoBehaviourPunCallbacks
     {
         isExistColor[color] = false;
         if (colorSelectPanel.gameObject.activeSelf)
-            colorSelectPanel.PV.RPC("UpdateColorButton", RpcTarget.AllBuffered, color);
+            colorSelectPanel.PV.RPC("UpdateColorButton", RpcTarget.All, color);
     }
 
     public int GetEnableColor()
@@ -57,5 +58,19 @@ public class GameRoomManager : MonoBehaviourPunCallbacks
         }
 
         return idx;
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        var players = FindObjectsOfType<AmongUsPlayer>();
+
+        foreach (var player in players)
+        {
+            if (player.actorNum == otherPlayer.ActorNumber)
+            {
+                PV.RPC("RemoveExistColor", RpcTarget.AllBuffered, (int)player.playerColor);
+                break;  
+            }
+        }
     }
 }

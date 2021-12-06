@@ -36,8 +36,8 @@ public class ColorSelectPanel : MonoBehaviour
 
         player.PV.RPC("SetPlayerColor", RpcTarget.AllBuffered, color);
 
-        PV.RPC("UpdateColorButton", RpcTarget.AllBuffered, oldColor);
-        PV.RPC("UpdateColorButton", RpcTarget.AllBuffered, color);
+        PV.RPC("UpdateColorButton", RpcTarget.All, oldColor);
+        PV.RPC("UpdateColorButton", RpcTarget.All, color);
 
         SetPreviewImageColor(color);
     }
