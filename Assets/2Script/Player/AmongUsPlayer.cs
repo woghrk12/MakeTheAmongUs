@@ -24,13 +24,12 @@ public class AmongUsPlayer : MonoBehaviour
 
     private void Start()
     {
-        PV.RPC("SetPlayer", RpcTarget.AllBuffered);
-
         if (PV.IsMine)
         {
             MyPlayer = this;
             playerColor = (EPlayerColor)GameRoomManager.instance.GetEnableColor();
             CreateRoomPlayer();
+            PV.RPC("SetPlayer", RpcTarget.AllBuffered);
         }
     }
 
@@ -50,7 +49,8 @@ public class AmongUsPlayer : MonoBehaviour
     
     public void SetMovable(bool value)
     {
-        playerCharacter.GetComponent<CharacterMove>().IsMovable = value;
+        if (playerCharacter != null)
+            playerCharacter.GetComponent<CharacterMove>().IsMovable = value;
     }
 
     [PunRPC]
