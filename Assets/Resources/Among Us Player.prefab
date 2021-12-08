@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036627210c50c8148b01cd69c92dc650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerColor: 8
+  playerColor: 12
+  PV: {fileID: 0}
 --- !u!114 &1994618002251039049
 MonoBehaviour:
   m_ObjectHideFlags: 0

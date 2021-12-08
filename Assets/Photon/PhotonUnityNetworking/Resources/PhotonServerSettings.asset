@@ -43,6 +43,13 @@ MonoBehaviour:
   - SetCharacterColorRPC
   - CheckExistColor
   - AddExistColor
+  - SetPlayerColor
+  - RemoveExistColor
+  - UpdateSelectColorButton
+  - UpdateUnselectColorButton
+  - UpdateColorButton
+  - SetPlayer
+  - RemovePlayer
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

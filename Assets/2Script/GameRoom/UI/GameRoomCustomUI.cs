@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameRoomCustomUI : MonoBehaviour
 {
+    private void Awake()
+    {
+        gameObject.SetActive(false);
+    }
     public void OnClickBackground()
     {
         CloseCustomUI();
@@ -13,12 +17,6 @@ public class GameRoomCustomUI : MonoBehaviour
     {
         GameRoomUIManager.instance.OpenMainUI();
         GameRoomUIManager.instance.CloseCustomUI();
-    }
-
-    public void OpenCustomUI()
-    {
-        GameRoomUIManager.instance.OpenCustomUI();
-        GameRoomUIManager.instance.CloseMainUI();
     }
 }
 

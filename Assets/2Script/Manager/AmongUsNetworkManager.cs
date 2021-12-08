@@ -55,10 +55,19 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.GameVersion = gameVersion;
         PhotonNetwork.SendRate = 60;
         PhotonNetwork.SerializationRate = 30;
+        PhotonNetwork.IsMessageQueueRunning = false;
     }
 
     public void Connect() => PhotonNetwork.ConnectUsingSettings();
-    public void Disconnect() => PhotonNetwork.Disconnect();
+    public void Disconnect()
+    {
+        if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.RemoveRPCs(PhotonNetwork.LocalPlayer);
+        }
+        
+        PhotonNetwork.Disconnect();
+    }
 
     public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby();
 
@@ -115,6 +124,21 @@ public class AmongUsNetworkManager : MonoBehaviourPunCallbacks
         SceneManager.sceneLoaded += LoadEnd;
         StartCoroutine(Load());
         PhotonNetwork.JoinRoom(roomName);
+    }
+
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.IsMessageQueueRunning = true;
+    }
+
+    public override void OnLeftRoom()
+    {
+        PhotonNetwork.IsMessageQueueRunning = false;
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        PhotonNetwork.RemoveRPCs(otherPlayer);
     }
 
     private IEnumerator Load()

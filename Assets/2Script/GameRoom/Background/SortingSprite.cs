@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class SortingSprite : MonoBehaviour
 {
     public enum ESortingType
@@ -16,10 +14,14 @@ public class SortingSprite : MonoBehaviour
     private SpriteSorter sorter;
     private SpriteRenderer spriteRender;
 
+    private void Awake()
+    {
+        spriteRender = GetComponent<SpriteRenderer>();
+    }
+
     void Start()
     {
         sorter = FindObjectOfType<SpriteSorter>();
-        spriteRender = GetComponent<SpriteRenderer>();
 
         spriteRender.sortingOrder = sorter.GetSortingOrder(gameObject);
     }
