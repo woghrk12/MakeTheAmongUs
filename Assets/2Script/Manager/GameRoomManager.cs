@@ -28,10 +28,10 @@ public class GameRoomManager : MonoBehaviourPunCallbacks
 
     private void SpawnPlayer()
     {
-        var player = PhotonNetwork.Instantiate("Among Us Player", Vector3.zero, Quaternion.identity);
+        var player = PhotonNetwork.Instantiate("Among Us Player", Vector3.zero, Quaternion.identity).GetComponent<AmongUsPlayer>();
+        player.PV.RPC("SetPlayer", RpcTarget.AllBuffered);
     }
 
-    [PunRPC]
     public void AddExistColor(int color)
     {
         isExistColor[color] = true;
@@ -39,7 +39,6 @@ public class GameRoomManager : MonoBehaviourPunCallbacks
             colorSelectPanel.PV.RPC("UpdateColorButton", RpcTarget.All, color);
     }
 
-    [PunRPC]
     public void RemoveExistColor(int color)
     {
         isExistColor[color] = false;
@@ -62,14 +61,20 @@ public class GameRoomManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
+        PV.RPC("RemovePlayer", RpcTarget.AllBuffered, otherPlayer.ActorNumber);
+    }
+
+    [PunRPC]
+    private void RemovePlayer(int actorNum)
+    {
         var players = FindObjectsOfType<AmongUsPlayer>();
 
         foreach (var player in players)
         {
-            if (player.actorNum == otherPlayer.ActorNumber)
+            if (player.actorNum == actorNum)
             {
-                PV.RPC("RemoveExistColor", RpcTarget.AllBuffered, (int)player.playerColor);
-                break;  
+                RemoveExistColor((int)player.playerColor);
+                break;
             }
         }
     }

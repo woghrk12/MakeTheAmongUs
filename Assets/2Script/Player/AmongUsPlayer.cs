@@ -27,9 +27,7 @@ public class AmongUsPlayer : MonoBehaviour
         if (PV.IsMine)
         {
             MyPlayer = this;
-            playerColor = (EPlayerColor)GameRoomManager.instance.GetEnableColor();
             CreateRoomPlayer();
-            PV.RPC("SetPlayer", RpcTarget.AllBuffered);
         }
     }
 
@@ -37,14 +35,14 @@ public class AmongUsPlayer : MonoBehaviour
     {
         var spawnPositions = FindObjectOfType<SpawnPositions>();
         playerCharacter = PhotonNetwork.Instantiate("Room Player", spawnPositions.GetSpawnPosition(), Quaternion.identity);
-        playerCharacter.GetComponent<CharacterColor>().PV.RPC("SetCharacterColorRPC", RpcTarget.AllBuffered, (int)playerColor);
-        GameRoomManager.instance.PV.RPC("AddExistColor", RpcTarget.AllBuffered, (int)playerColor);
+        PV.RPC("SetPlayerColor", RpcTarget.AllBuffered, (int)playerColor);
     }
 
     [PunRPC]
     public void SetPlayer()
     {
         actorNum = PV.Owner.ActorNumber;
+        playerColor = (EPlayerColor)GameRoomManager.instance.GetEnableColor();
     }
     
     public void SetMovable(bool value)
@@ -56,7 +54,8 @@ public class AmongUsPlayer : MonoBehaviour
     [PunRPC]
     public void SetPlayerColor(int color)
     {
-        GameRoomManager.instance.PV.RPC("RemoveExistColor", RpcTarget.AllBuffered, (int)playerColor);
+        if (playerColor != EPlayerColor.End)
+            GameRoomManager.instance.RemoveExistColor((int)playerColor);
         
         playerColor = (EPlayerColor)color;
 
@@ -66,7 +65,7 @@ public class AmongUsPlayer : MonoBehaviour
                 RpcTarget.AllBuffered, 
                 (int)playerColor
                 );
-       
-        GameRoomManager.instance.PV.RPC("AddExistColor", RpcTarget.AllBuffered, (int)playerColor);
+
+        GameRoomManager.instance.AddExistColor((int)color);
     }
 }
