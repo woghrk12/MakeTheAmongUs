@@ -32,6 +32,20 @@ public class CharacterMove : MonoBehaviour
         PV = GetComponent<PhotonView>();
     }
 
+    private void Start()
+    {
+        spriteRenderer.enabled = true;
+
+        if (PV.IsMine)
+            PV.RPC("SetSpawnAnimation", RpcTarget.All);
+    }
+
+    [PunRPC]
+    private void SetSpawnAnimation()
+    {
+        anim.SetTrigger("Spawn");
+    }
+
     private void FixedUpdate()
     {
         if (PV.IsMine && isMovable)
